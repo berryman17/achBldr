@@ -1,6 +1,6 @@
 
-const File = require('./src/file/file.js')
+const File = require('./src/file/file')
+const FileHeader = require('./src/file/fileHeader')
 
 var f = new File.File();
 
-f.addBatch();

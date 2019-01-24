@@ -1,7 +1,9 @@
-const constants = require('./constants.js')
+const FileHeader = require('./fileHeader')
 
 class File {
-    constructor() {}
+    constructor() {
+        this.header = new FileHeader.FileHeader();
+    }
 
     addBatch() {
         
