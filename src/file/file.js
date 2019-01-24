@@ -2,7 +2,7 @@ const FileHeader = require('./fileHeader')
 
 class File {
     constructor() {
-        this.header = new FileHeader.FileHeader();
+        this.header = new FileHeader();
     }
 
     addBatch() {
@@ -12,4 +12,4 @@ class File {
     
 }
 
-module.exports.File = File;
+module.exports = File;

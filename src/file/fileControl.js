@@ -66,4 +66,4 @@ const fields = {
     },
 }
 
-module.exports.FileControl = FileControl;
+module.exports = FileControl;

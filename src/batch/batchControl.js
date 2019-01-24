@@ -86,4 +86,4 @@ const fields = {
     },
 }
 
-module.exports.BatchControl = BatchControl;
+module.exports = BatchControl;

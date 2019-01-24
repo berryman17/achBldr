@@ -1,7 +1,8 @@
+const Entry = require('./Entry')
 
-
-class EntryCTX {
+class EntryCTX extends Entry {
     constructor() {
+        super();
         this.fields = fields;
     }
 }
@@ -100,4 +101,4 @@ const fields = {
     }
 }
 
-module.exports.EntryCTX = EntryCTX;
+module.exports = EntryCTX;

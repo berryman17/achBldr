@@ -45,4 +45,4 @@ const fields = {
     },
 }
 
-module.exports.EntryAddenda = EntryAddenda;
+module.exports = EntryAddenda;

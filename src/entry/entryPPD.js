@@ -1,7 +1,8 @@
+const Entry = require('./Entry')
 
-
-class EntryPPD {
+class EntryPPD extends Entry {
     constructor() {
+        super();
         this.fields = fields;
     }
 }
@@ -86,4 +87,4 @@ const fields = {
     }
 }
 
-module.exports.EntryPPD = EntryPPD;
+module.exports = EntryPPD;

@@ -1,7 +1,8 @@
+const Entry = require('./Entry')
 
-
-class EntryCCD {
+class EntryCCD extends Entry {
     constructor() {
+        super();
         this.fields = fields;
     }
 }
@@ -86,4 +87,4 @@ const fields = {
     }
 }
 
-module.exports.EntryCCD = EntryCCD;
+module.exports = EntryCCD;

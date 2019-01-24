@@ -101,3 +101,5 @@ const fields = {
     }
 
 }
+
+module.exports = BatchHeader;

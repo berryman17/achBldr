@@ -1,7 +1,15 @@
 
 
 class Entry {
-    constructor() {}
+    constructor() {
+        this.addendaList = addendaList;
+    }
 
-    addAddenda() {}
+    addAddenda(entryAddenda) {
+        this.addendaList.push(entryAddenda);
+    }
 }
+
+var addendaList = [];
+
+module.exports = Entry;

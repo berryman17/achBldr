@@ -101,4 +101,4 @@ const fields = {
 
 }
 
-module.exports.FileHeader = FileHeader;
+module.exports = FileHeader;
