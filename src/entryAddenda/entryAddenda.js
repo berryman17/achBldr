@@ -1,0 +1,6 @@
+
+
+class EntryAddenda {
+    constructor() {}
+    
+}

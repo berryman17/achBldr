@@ -1,0 +1,10 @@
+
+
+
+class Batch {
+    constructor() {}
+
+    addEntry() {
+        
+    }
+}
