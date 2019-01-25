@@ -21,4 +21,4 @@ var ea = new EntryAddenda();
 e.addAddenda(ea);
 b.addEntry(e);
 f.addBatch(b);
-console.log(f.header);
+//console.log(f.header);
