@@ -1,4 +1,4 @@
-const Validation = require('../validation')
+const Validation = require('../Validation')
 
 class FileHeader {
     constructor(config) {

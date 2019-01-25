@@ -1,0 +1,31 @@
+{
+    "name": "achBldr",
+    "description": "",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/berryman17/achBldr"
+    },
+    "keywords": [],
+    "author": "Ian Berryman",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/berryman17/achBldr/issues"
+    },
+    "homepage": "https://github.com/berryman17/achBldr",
+    "scripts": {
+        "unit": "jest --config test/unit/jest.conf.js --coverage",
+        "test": "npm run unit",
+        "build": "node build/build.js"
+      },
+      "dependencies": {
+
+      },
+      "devDependencies": {
+
+      }
+  }
