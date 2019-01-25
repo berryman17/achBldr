@@ -2,9 +2,15 @@
 
 
 class Batch {
-    constructor() {}
+    constructor() {
+        this.entryList = new Array();
+    }
 
-    addEntry() {
-        
+    addEntry(newEntry) {
+        this.entryList.push(newEntry);
     }
 }
+
+
+
+module.exports = Batch;

@@ -13,77 +13,77 @@ const fields = {
         position: 1,
         length: 1,
         patterm: "/(6)/",
-        defaultValue: "6"
+        value: "6"
     },
     transactionCode: {
         required: true,
         position: 2,
         length: 2,
         patterm: "/[0-9]{2}/",
-        defaultValue: ""
+        value: ""
     },
     receivingDfiId: {
         required: true,
         position: 4,
         length: 8,
         patterm: "/[0-9]{8}/",
-        defaultValue: ""
+        value: ""
     },
     checkDigit: {
         required: true,
         position: 12,
         length: 1,
         patterm: "/[0-9]/",
-        defaultValue: ""
+        value: ""
     },
     accountNumber: {
         required: true,
         position: 13,
         length: 17,
         patterm: "/[0-9\w\- ]{17}/",
-        defaultValue: ""
+        value: ""
     },
     amount: {
         required: true,
         position: 30,
         length: 10,
         patterm: "/[0-9]{10}/",
-        defaultValue: 0
+        value: 0
     },
     individualIdNumber: {
         required: false,
         position: 40,
         length: 15,
         patterm: "/[0-9\w\- ]{15}/",
-        defaultValue: ""
+        value: ""
     },
     individualName: {
         required: true,
         position: 55,
         length: 22,
         patterm: "/[0-9\w\- ]{22}/",
-        defaultValue: ""
+        value: ""
     },
     discretionaryData: {
         required: false,
         position: 77,
         length: 2,
         patterm: "/[0-9\w\- ]{2}/",
-        defaultValue: ""
+        value: ""
     },
     addendaRecordIndicator: {
         required: true,
         position: 79,
         length: 1,
         patterm: "/[01]/",
-        defaultValue: "0"
+        value: "0"
     },
     traceNumber: {
         required: true,
         position: 80,
         length: 15,
         patterm: "/[0-9]{15}/",
-        defaultValue: ""
+        value: ""
     }
 }
 

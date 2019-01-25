@@ -2,7 +2,7 @@
 
 class Entry {
     constructor() {
-        this.addendaList = addendaList;
+        this.addendaList = new Array();
     }
 
     addAddenda(entryAddenda) {
@@ -10,6 +10,6 @@ class Entry {
     }
 }
 
-var addendaList = [];
+
 
 module.exports = Entry;

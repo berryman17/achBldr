@@ -13,91 +13,91 @@ const fields = {
         position: 1,
         length: 1,
         patterm: "/(6)/",
-        defaultValue: "6"
+        value: "6"
     },
     transactionCode: {
         required: true,
         position: 2,
         length: 2,
         patterm: "/[0-9]{2}/",
-        defaultValue: ""
+        value: ""
     },
     receivingDfiId: {
         required: true,
         position: 4,
         length: 8,
         patterm: "/[0-9]{8}/",
-        defaultValue: ""
+        value: ""
     },
     checkDigit: {
         required: true,
         position: 12,
         length: 1,
         patterm: "/[0-9]/",
-        defaultValue: ""
+        value: ""
     },
     accountNumber: {
         required: true,
         position: 13,
         length: 17,
         patterm: "/[0-9\w\- ]{17}/",
-        defaultValue: ""
+        value: ""
     },
     amount: {
         required: true,
         position: 30,
         length: 10,
         patterm: "/[0-9]{10}/",
-        defaultValue: 0
+        value: 0
     },
     identificationNumber: {
         required: false,
         position: 40,
         length: 15,
         patterm: "/[0-9\w\- ]{15}/",
-        defaultValue: ""
+        value: ""
     },
     numberOfAddendaRecords: {
         required: true,
         position: 55,
         length: 4,
         patterm: "/[0-9]{4}/",
-        defaultValue: 0
+        value: 0
     },
     individualName: {
         required: true,
         position: 59,
         length: 16,
         patterm: "/[0-9\w\- ]{16}/",
-        defaultValue: ""
+        value: ""
     },
     reserved: {
         required: false,
         position: 75,
         length: 2,
         patterm: "/[ ]{2}/",
-        defaultValue: ""
+        value: ""
     },
     discretionaryData: {
         required: false,
         position: 77,
         length: 2,
         patterm: "/[0-9\w\- ]{2}/",
-        defaultValue: ""
+        value: ""
     },
     addendaRecordIndicator: {
         required: true,
         position: 79,
         length: 1,
         patterm: "/[01]/",
-        defaultValue: "0"
+        value: "0"
     },
     traceNumber: {
         required: true,
         position: 80,
         length: 15,
         patterm: "/[0-9]{15}/",
-        defaultValue: ""
+        value: ""
     }
 }
 
