@@ -4,6 +4,7 @@ const Batch = require('./src/batch/Batch')
 const FileHeader = require('./src/file/FileHeader')
 const EntryPPD = require('./src/entry/EntryPPD')
 const EntryAddenda = require('./src/entryAddenda/EntryAddenda')
+const Validation = require('./src/Validation')
 
 var f = new File({
     immediateDestination: "092905249",
@@ -13,10 +14,17 @@ var f = new File({
     fileCreationDate: "190124",
     fileCreationTime: "1925"
 });
+
 var b = new Batch();
 var e = new EntryPPD();
 var ea = new EntryAddenda();
 
+const starter = {
+    immediateDestination: "092905249",
+    immediateOrigin: "092905249"
+  };
+var fileHeader = new FileHeader(starter);
+//Validation.validateImmediateDestinationOrOrigin(fileHeader.fields.immediateDestination)
 
 e.addAddenda(ea);
 b.addEntry(e);

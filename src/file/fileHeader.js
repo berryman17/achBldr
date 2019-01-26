@@ -10,7 +10,7 @@ class FileHeader {
     }
 
     setImmediateDestination(immediateDestination) {
-        console.log(Validation.validateImmediateDestinationOrOrigin(immediateDestination));
+        //console.log(Validation.validateImmediateDestinationOrOrigin(immediateDestination));
         this.fields.immediateDestination.value = immediateDestination;
     }
 
@@ -19,7 +19,7 @@ class FileHeader {
     }
 
     setImmediateOrigin(immediateOrigin) {
-        console.log(Validation.validateImmediateDestinationOrOrigin(immediateOrigin));
+        //console.log(Validation.validateImmediateDestinationOrOrigin(immediateOrigin));
         this.fields.immediateOrigin.value = immediateOrigin;
     }
 

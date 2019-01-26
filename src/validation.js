@@ -9,23 +9,23 @@ var exports = module.exports = {};
  * @pattern String regular expression pattern for field
  * @return boolean Returns true if value matches pattern
  */
-exports.validateImmediateDestinationOrOrigin = function(immediateDestinationOrOrigin, pattern) {
+exports.validateImmediateDestinationOrOrigin = function(immediateDestinationOrOriginField) {
     var regex = new RegExp();
-    regex.pattern = pattern;
+    regex.pattern = immediateDestinationOrOriginField.pattern;
 
     // trim string
-    immediateDestinationOrOrigin = immediateDestinationOrOrigin.trim();
+    resultString = immediateDestinationOrOriginField.value.trim();
 
-    // if immediateDestinationOrOrigin is 9 characters long
-    if (immediateDestinationOrOrigin.length == 9) {
+    // if resultString is 9 characters long
+    if (resultString.length == 9) {
 
         // add space to beginning (NACHA field format)
-        immediateDestinationOrOrigin = constants.SPACE + immediateDestinationOrOrigin;
+        resultString = constants.SPACE + resultString;
 
         // test the string against the fields pattern
-        return regex.test(immediateDestinationOrOrigin);
+        return regex.test(resultString);
 
-    // if immediateDestinationOrOrigin isn't 9 characters long
+    // if resultString isn't 9 characters long
     } else {
         return false;
     }
