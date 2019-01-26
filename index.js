@@ -20,8 +20,7 @@ var e = new EntryPPD();
 var ea = new EntryAddenda();
 
 const starter = {
-    immediateDestination: "092905249",
-    immediateOrigin: "092905249"
+    immediateDestination: "092905249"
   };
 var fileHeader = new FileHeader(starter);
 //Validation.validateImmediateDestinationOrOrigin(fileHeader.fields.immediateDestination)

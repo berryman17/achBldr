@@ -1,4 +1,5 @@
 const Validation = require('../Validation')
+const Utils = require('../utils')
 
 class FileHeader {
     constructor(config) {
@@ -7,7 +8,12 @@ class FileHeader {
         this.setImmediateDestinationName(config.immediateDestinationName);
         this.setImmediateOrigin(config.immediateOrigin);
         this.setImmediateOriginName(config.immediateOriginName);
+
+        // throw error if required fields aren't provided
+        Utils.checkRequiredFields(this.fields);
     }
+
+
 
     setImmediateDestination(immediateDestination) {
         //console.log(Validation.validateImmediateDestinationOrOrigin(immediateDestination));
@@ -71,14 +77,14 @@ const fields = {
         position: 24,
         length: 6,
         patterm: "/[0-9]{6}/",
-        value: "190101"
+        value: ""
     },
     fileCreationTime: {
         required: false,
         position: 30,
         length: 4,
         patterm: "/[0-2][0-9][0-9][0-9]/",
-        value: "2400"
+        value: ""
     },
     fileIdModifier: {
         required: true,
@@ -113,14 +119,14 @@ const fields = {
         position: 41,
         length: 23,
         patterm: "/[0-9\w\- ]{0,23}/",
-        value: "Fed Bank"
+        value: ""
     },
     immediateOriginName: {
         required: false,
         position: 64,
         length: 23,
         patterm: "/[0-9\w\- ]{0,23}/",
-        value: "My Bank"
+        value: ""
     },
     referenceCode: {
         required: false,
