@@ -4,6 +4,9 @@ var exports = module.exports = {};
 
 // Fills string fromLeft or fromRight with fillChar to desired outputLength
 exports.stringFill = function(inputString, fillChar, fillDirection, outputLength) {
+    // if inputString is null or undefined, set to empty string
+    if (inputString == undefined || inputString == null) inputString = "";
+
     // throw error if fillChar is not one character
     if (fillChar.length != 1) throw new Error("fillChar must be one character");
     // throw error if outputLength is less than or equal to 0
@@ -35,4 +38,22 @@ exports.checkRequiredFields = function(fields) {
             }
         }
     })
+}
+
+// Shortens input string to field length 
+exports.shortenStringForField = (inputString, expectedLength) => {
+    // throw error if expectedLength < 1
+    if (expectedLength < 1) throw new Error("expectedLength must be greater than 1");
+
+    var resultString = inputString;
+    // fill field value with spaces if input is undefined or null
+    if (inputString == undefined || inputString == null) {
+        resultString = "";
+
+    // shorten input if longer than field length    
+    } else if (inputString.length > expectedLength) {
+        resultString = inputString.substr(0, expectedLength);
+    }
+
+    return resultString;
 }

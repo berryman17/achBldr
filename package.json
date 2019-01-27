@@ -18,7 +18,8 @@
     },
     "homepage": "https://github.com/berryman17/achBldr",
     "scripts": {
-        "test": "jest --coverage --collectCoverageFrom=src/**/*.{js,jsx}",
+        "test": "jest",
+        "testCoverage": "jest --coverage --collectCoverageFrom=src/**/*.{js,jsx}",
         "build": "node build/build.js",
         "start": "node index.js"
       },

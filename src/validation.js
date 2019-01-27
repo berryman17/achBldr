@@ -11,37 +11,42 @@ var exports = module.exports = {};
  * @return boolean Returns true if value matches pattern
  */
 exports.validateImmediateDestinationOrOrigin = function(immediateDestinationOrOriginField) {
-    var regex = new RegExp();
-    regex.pattern = immediateDestinationOrOriginField.pattern;
+    var regex = new RegExp(immediateDestinationOrOriginField.pattern);
 
-    // trim string
-    resultString = immediateDestinationOrOriginField.value.trim();
-
-    // if resultString is 9 characters long
-    if (resultString.length == 9) {
-
-        // add space to beginning (NACHA field format)
-        resultString = constants.SPACE + resultString;
-
-        // test the string against the fields pattern
-        if (regex.test(resultString)) {
-            return;
-        }
+    // test the string against the fields pattern
+    if (regex.test(immediateDestinationOrOriginField.value)) {
+        return true;
+    } else {
+        return false;
     }
-    
-    // throw error if regex fails
-    throw new AchFieldError(immediateDestinationOrOriginField + " didn't match field pattern");
 
 }
 
 exports.validateImmediateDestinationOrOriginName = (immediateDestinationOrOriginNameField) => {
-    var regex = new RegExp();
-    regex.pattern = immediateDestinationOrOriginNameField.pattern;
+    var regex = new RegExp(immediateDestinationOrOriginNameField.pattern);
 
     // trim string
     resultString = immediateDestinationOrOriginNameField.value.trim();
 
     // test the string against the fields pattern
-    return regex.test(resultString);
+    if (regex.test(resultString)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+exports.validateReferenceCode = (referenceCode) => {
+    var regex = new RegExp(referenceCode.pattern);
+
+    // trim string
+    resultString = referenceCode.value.trim();
+
+    // test the string against the fields pattern
+    if (regex.test(resultString)) {
+        return true;
+    } else {
+        return false;
+    }   
 }
 

@@ -6,6 +6,7 @@ const EntryPPD = require('./src/entry/EntryPPD')
 const EntryAddenda = require('./src/entryAddenda/EntryAddenda')
 const Validation = require('./src/Validation')
 
+/*
 var f = new File({
     immediateDestination: "092905249",
     immediateDestinationName: "Stockman Bank of Montana",
@@ -18,16 +19,17 @@ var f = new File({
 var b = new Batch();
 var e = new EntryPPD();
 var ea = new EntryAddenda();
+*/
 
 const starter = {
     immediateDestination: "092905249",
-    immediateOrigin: "0",
     immediateDestinationName: "Stockman Bank"
   };
 var fileHeader = new FileHeader(starter);
-console.log(fileHeader.fields.immediateDestinationName);
 
+/*
 e.addAddenda(ea);
 b.addEntry(e);
 f.addBatch(b);
-//console.log(f.header);
+console.log(f.header);
+*/

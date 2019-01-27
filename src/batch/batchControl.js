@@ -12,7 +12,7 @@ const fields = {
         required: true,
         position: 1,
         length: 1,
-        patterm: "/(8)/",
+        pattern: "(8)",
         value: "8"
     },
     serviceClassCode: {
@@ -20,7 +20,7 @@ const fields = {
         required: true,
         position: 2,
         length: 3,
-        patterm: "/[2][028][05]/",
+        pattern: "[2][028][05]",
         value: "200"
     },
     entryCount: {
@@ -28,7 +28,7 @@ const fields = {
         required: true,
         position: 5,
         length: 6,
-        patterm: "/[0-9]{6}/",
+        pattern: "[0-9]{6}",
         value: 0
     },
     entryHash: {
@@ -36,7 +36,7 @@ const fields = {
         required: true,
         position: 11,
         length: 10,
-        patterm: "/[0-9]{10}/",
+        pattern: "[0-9]{10}",
         value: 0
     },
     totalDebitAmount: {
@@ -44,7 +44,7 @@ const fields = {
         required: true,
         position: 21,
         length: 12,
-        patterm: "/[0-9]{12}/",
+        pattern: "[0-9]{12}",
         value: 0
     },
     totalCreditAmount: {
@@ -52,7 +52,7 @@ const fields = {
         required: true,
         position: 33,
         length: 12,
-        patterm: "/[0-9]{6}/",
+        pattern: "[0-9]{6}",
         value: 0
     },
     companyIdentification: {
@@ -60,7 +60,7 @@ const fields = {
         required: true,
         position: 45,
         length: 10,
-        patterm: "/[0-9 ]{10}/",
+        pattern: "[0-9 ]{10}",
         value: " 810101012"
     },
     messageAuthCode: {
@@ -68,7 +68,7 @@ const fields = {
         required: false,
         position: 55,
         length: 19,
-        patterm: "/[ ]{19}/",
+        pattern: "[ ]{19}",
         value: ""
     },
     reserved: {
@@ -76,7 +76,7 @@ const fields = {
         required: false,
         position: 74,
         length: 6,
-        patterm: "/[ ]{6}/",
+        pattern: "[ ]{6}",
         value: ""
     },
     originatingDfiId: {
@@ -84,7 +84,7 @@ const fields = {
         required: true,
         position: 80,
         length: 8,
-        patterm: "/[0-9]{8}/",
+        pattern: "[0-9]{8}",
         value: "09290524"
     },
     batchNumber: {
@@ -92,7 +92,7 @@ const fields = {
         required: true,
         position: 88,
         length: 7,
-        patterm: "/[0-9]{7}/",
+        pattern: "[0-9]{7}",
         value: 1
     }
 }

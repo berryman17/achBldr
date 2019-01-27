@@ -13,7 +13,7 @@ const fields = {
         required: true,
         position: 1,
         length: 1,
-        patterm: "/(5)/",
+        pattern: "(5)",
         value: "5"
     },
     serviceClassCode: {
@@ -21,7 +21,7 @@ const fields = {
         required: true,
         position: 2,
         length: 3,
-        patterm: "/[2][028][05]/",
+        pattern: "[2][028][05]",
         value: "200"
     },
     companyName: {
@@ -29,7 +29,7 @@ const fields = {
         required: true,
         position: 5,
         length: 16,
-        patterm: "/[0-9\w\- ]{16}/",
+        pattern: "[0-9\w\- ]{16}",
         value: "My Company"
     },
     companyDiscretionaryData: {
@@ -37,7 +37,7 @@ const fields = {
         required: false,
         position: 21,
         length: 20,
-        patterm: "/[0-9\w\- ]{20}/",
+        pattern: "[0-9\w\- ]{20}",
         value: "Payroll 01-01-19"
     },
     companyIdentification: {
@@ -45,7 +45,7 @@ const fields = {
         required: true,
         position: 41,
         length: 10,
-        patterm: "/[0-9]{10}/",
+        pattern: "[0-9]{10}",
         value: "810101012"
     },
     standardEntryClassCode: {
@@ -53,7 +53,7 @@ const fields = {
         required: true,
         position: 51,
         length: 3,
-        patterm: "/[A-Z]{3}/",
+        pattern: "[A-Z]{3}",
         value: "PPD"
     },
     companyEntryDescription: {
@@ -61,7 +61,7 @@ const fields = {
         required: true,
         position: 54,
         length: 10,
-        patterm: "/[0-9A-Z\- ]{10}/",
+        pattern: "[0-9A-Z\- ]{10}",
         value: "PAYROLL"
     },
     companyDescriptiveDate: {
@@ -69,7 +69,7 @@ const fields = {
         required: false,
         position: 64,
         length: 6,
-        patterm: "/[0-9A-Z\- ]{6}/",
+        pattern: "[0-9A-Z\- ]{6}",
         value: "190101"
     },
     effectiveEntryDate: {
@@ -77,7 +77,7 @@ const fields = {
         required: true,
         position: 70,
         length: 6,
-        patterm: "/[0-9]{6}/",
+        pattern: "[0-9]{6}",
         value: "190102"
     },
     settlementDate: {
@@ -85,7 +85,7 @@ const fields = {
         required: false,
         position: 76,
         length: 3,
-        patterm: "/[ ]{3}/",
+        pattern: "[ ]{3}",
         value: "   "
     },
     originatorStatusCode: {
@@ -93,7 +93,7 @@ const fields = {
         required: true,
         position: 79,
         length: 1,
-        patterm: "/(1)/",
+        pattern: "(1)",
         value: "1"
     },
     originatingDfiId: {
@@ -101,7 +101,7 @@ const fields = {
         required: true,
         position: 80,
         length: 8,
-        patterm: "/[0-9]{8}/",
+        pattern: "[0-9]{8}",
         value: "09290524"
     },
     batchNumber: {
@@ -109,7 +109,7 @@ const fields = {
         required: true,
         position: 88,
         length: 7,
-        patterm: "/[0-9]{7}/",
+        pattern: "[0-9]{7}",
         value: 1
     }
 

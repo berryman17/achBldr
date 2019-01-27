@@ -1,6 +1,7 @@
 const Validation = require('../Validation');
 const Utils = require('../utils');
 const Constants  = require('../constants');
+const AchFieldError = require('../error/AchFieldError');
 
 class FileHeader {
     constructor(config) {
@@ -14,42 +15,52 @@ class FileHeader {
         Utils.checkRequiredFields(this.fields);
     }
 
-
-
     setImmediateDestination(immediateDestination) {
-        this.fields.immediateDestination.value = immediateDestination;
-        Validation.validateImmediateDestinationOrOrigin(this.fields.immediateDestination);
+        // throw error if immediateDestination is undefined or null
+        if (immediateDestination == undefined || immediateDestination == null) throw new AchFieldError("ImmediateDestination is required");
+
+        var curField = this.fields.immediateDestination;
+        var immDest = Utils.stringFill(immediateDestination, Constants.SPACE, "fromLeft", curField.length);
+        curField.value = immDest;
+        Validation.validateImmediateDestinationOrOrigin(curField);
     }
 
     setImmediateDestinationName(immediateDestinationName) {
-        var name = "";
+        var name = immediateDestinationName;
         var curField = this.fields.immediateDestinationName;
-        // fill field value with spaces if input is undefined or null
-        if (immediateDestinationName == undefined || immediateDestinationName == null) {
-            // fill empty string with spaces
-            name = Utils.stringFill(name, Constants.SPACE, "fromRight", curField.length);
-            curField.value = name;
-            Validation.validateImmediateDestinationOrOriginName(this.fields.immediateDestinationName);
-        } else {
-            name = immediateDestinationName;
-            // shorten input if longer than field length
-            if (immediateDestinationName.length > curField.length) {
-                name = name.substr(0, curField.length-1);
-            }
-            // fill string with spaces if shorter than 
-            Utils.stringFill(name, Constants.SPACE, "fromRight", curField.length);
-            curField.value = name;
-            Validation.validateImmediateDestinationOrOriginName(curField);
-        }
+        // shorten name if longer than field length
+        name = Utils.shortenStringForField(name, curField.length);
+
+        // fill string with spaces from right
+        name = Utils.stringFill(name, Constants.SPACE, "fromRight", curField.length);
+        // set field value
+        curField.value = name;
+        // throw error if field is invalid
+        if (Validation.validateImmediateDestinationOrOriginName(curField)) throw new AchFieldError("ImmediateDestinationName has invalid format");
     }
 
     setImmediateOrigin(immediateOrigin) {
-        this.fields.immediateOrigin.value = immediateOrigin;
-        Validation.validateImmediateDestinationOrOrigin(this.fields.immediateOrigin);
+        // throw error if immediateOrigin is undefined or null
+        if (immediateOrigin == undefined || immediateOrigin == null) throw new AchFieldError("ImmediateOrigin is required");
+
+        var curField = this.fields.immediateOrigin;
+        var immOri = Utils.stringFill(immediateOrigin, Constants.SPACE, "fromLeft", curField.length);
+        curField.value = immOri;
+        Validation.validateImmediateDestinationOrOrigin(curField);
     }
 
     setImmediateOriginName(immediateOriginName) {
-        this.fields.immediateOriginName.value = immediateOriginName;
+        var name = immediateOriginName;
+        var curField = this.fields.immediateOriginName;
+        // shorten name if longer than field length
+        name = Utils.shortenStringForField(name, curField.length);
+
+        // fill string with spaces if shorter than 
+        Utils.stringFill(name, Constants.SPACE, "fromRight", curField.length);
+        // set field value
+        curField.value = name;
+        // throw error if field is invalid
+        if (Validation.validateImmediateDestinationOrOriginName(curField)) throw new AchFieldError("ImmediateOriginName has invalid format");
     }
 
     setFileCreationDate(fileCreationDate) {
@@ -60,6 +71,20 @@ class FileHeader {
         this.fields.fileCreationTime.value = fileCreationTime;
     }
 
+    setReferenceCode(referenceCode) {
+        var refCode = referenceCode;
+        var curField = this.fields.immediateOriginName;
+        // shorten refCode if too long
+        refCode = Utils.shortenStringForField(refCode, curField.length);
+
+        // fill string with spaces if shorter than field length
+        Utils.stringFill(refCode, Constants.SPACE, "fromRight", curField.length);
+        // set field value
+        curField.value = refCode;
+        // validate field value
+        Validation.validateReferenceCode(curField);
+    }
+
 }
 
 const fields = {
@@ -68,7 +93,7 @@ const fields = {
         required: true,
         position: 1,
         length: 1,
-        patterm: "/(1)/",
+        pattern: "(1)",
         value: "1"
     },
     priorityCode: {
@@ -76,7 +101,7 @@ const fields = {
         required: true,
         position: 2,
         length: 2,
-        patterm: "/(01)/",
+        pattern: "(01)",
         value: "01"
     },
     immediateDestination: {
@@ -84,23 +109,23 @@ const fields = {
         required: true,
         position: 4,
         length: 10,
-        patterm: "/[ ][0-9]{9}/",
-        value: " 123456789"
+        pattern: "[ ][0-9]{9}",
+        value: ""
     },
     immediateOrigin: {
         name: "ImmediateOrigin",
         required: true,
         position: 14,
         length: 10,
-        patterm: "/[ ][0-9]{9}/",
-        value: " 123456789"
+        pattern: "[ ][0-9]{9}",
+        value: ""
     },
     fileCreationDate: {
         name: "FileCreationDate",
         required: true,
         position: 24,
         length: 6,
-        patterm: "/[0-9]{6}/",
+        pattern: "[0-9]{6}",
         value: ""
     },
     fileCreationTime: {
@@ -108,7 +133,7 @@ const fields = {
         required: false,
         position: 30,
         length: 4,
-        patterm: "/[0-2][0-9][0-9][0-9]/",
+        pattern: "[0-2][0-9][0-9][0-9]",
         value: ""
     },
     fileIdModifier: {
@@ -116,7 +141,7 @@ const fields = {
         required: true,
         position: 33,
         length: 1,
-        patterm: "/[0-9A-Z]{1}/",
+        pattern: "[0-9A-Z]{1}",
         value: "A"
     },
     recordSize: {
@@ -124,7 +149,7 @@ const fields = {
         required: true,
         position: 35,
         length: 3,
-        patterm: "/(094)/",
+        pattern: "(094)",
         value: "094"
     },
     blockingFactor: {
@@ -132,7 +157,7 @@ const fields = {
         required: true,
         position: 38,
         length: 2,
-        patterm: "/(10)/",
+        pattern: "(10)",
         value: "10"
     },
     formatCode: {
@@ -140,7 +165,7 @@ const fields = {
         required: true,
         position: 10,
         length: 1,
-        patterm: "/(1)/",
+        pattern: "(1)",
         value: "1"
     },
     immediateDestinationName: {
@@ -148,7 +173,7 @@ const fields = {
         required: false,
         position: 41,
         length: 23,
-        patterm: "/[0-9\w\- ]{23}/",
+        pattern: "[0-9\\w\\- ]{23}",
         value: ""
     },
     immediateOriginName: {
@@ -156,7 +181,7 @@ const fields = {
         required: false,
         position: 64,
         length: 23,
-        patterm: "/[0-9\w\- ]{23}/",
+        pattern: "[0-9\\w\\- ]{23}",
         value: ""
     },
     referenceCode: {
@@ -164,7 +189,7 @@ const fields = {
         required: false,
         position: 87,
         length: 8,
-        patterm: "/[0-9\w\- ]{0,23}/",
+        pattern: "[0-9\\w\\- ]{8}",
         value: ""
     }
 

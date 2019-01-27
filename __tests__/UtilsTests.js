@@ -84,3 +84,52 @@ describe("ensure checkRequiredFields() throws errors properly", () => {
         expect(() => {Utils.checkRequiredFields(fields)}).toThrow();
     });
 });
+
+describe("test shortenStringForField(inputString, expectedLength)", () => {
+    const length = 10;
+
+    describe("shortenStringForField() should return properly formatted strings", () => {
+        test("returns inputString when shorter than length", () => {
+            expect(Utils.shortenStringForField("shorter", length)).toEqual("shorter");
+        });
+
+        test("returns inputString when inputString.length same as length", () => {
+            expect(Utils.shortenStringForField("quiteRight", length)).toEqual("quiteRight");
+        });
+
+        test("returns empty string when inputString is undefined", () => {
+            expect(Utils.shortenStringForField(undefined, length)).toEqual(""); // empty string
+        });
+
+        test("returns empty string when inputString is null", () => {
+            expect(Utils.shortenStringForField(null, length)).toEqual(""); // empty string
+        });
+
+        test("returns shortened string when inputString is too long", () => {
+            expect(Utils.shortenStringForField("tooooooooLong", 10)).toEqual("tooooooooLong".substr(0, length));
+        });
+    });
+
+    describe("shortenStringForField() should should throw/not throw errors properly", () => {
+
+        test("does not throw error when inputString is undefined", () => {
+            expect(() => {Utils.shortenStringForField(undefined, length)}).not.toThrow();
+        });
+
+        test("does not throw error when inputString is null", () => {
+            expect(() => {Utils.shortenStringForField(null, length)}).not.toThrow();
+        });
+
+        test("does not throw error when inputString is empty", () => {
+            expect(() => {Utils.shortenStringForField("", length)}).not.toThrow();
+        });
+
+        test("does not throw error when expectedLength is >= 1", () => {
+            expect(() => {Utils.shortenStringForField("validString", 1)}).not.toThrow();
+        });
+
+        test("throws error when expectedLength is < 1", () => {
+            expect(() => {Utils.shortenStringForField("validString", 0)}).toThrow();
+        });
+    });
+});

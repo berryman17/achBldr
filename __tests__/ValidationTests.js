@@ -1,7 +1,7 @@
 const Validation = require('../src/Validation');
 const FileHeader = require('../src/file/FileHeader')
 
-describe("ensures FileHeader validators return true for valid field values", () => {
+describe("FileHeader validators should return true for valid field values", () => {
 
   var goodFileHeader;
 
@@ -13,17 +13,17 @@ describe("ensures FileHeader validators return true for valid field values", () 
     goodFileHeader = new FileHeader(goodStarter);
   })
 
-  test("ensures validation returns true for good immediate destination", () => {
+  test("returns true for good immediate destination", () => {
     expect(Validation.validateImmediateDestinationOrOrigin(goodFileHeader.fields.immediateDestination)).toBe(true);
   });
 
-  test("ensures validation returns true for good immediate origin", () => {
+  test("returns true for good immediate origin", () => {
     expect(Validation.validateImmediateDestinationOrOrigin(goodFileHeader.fields.immediateOrigin)).toBe(true);
   });
 
 });
 
-describe("ensures FileHeader validators return false for invalid field values", () => {
+describe("FileHeader validators should return false for invalid field values", () => {
 
   var shortFileHeader;
   var textFileHeader;
@@ -43,19 +43,19 @@ describe("ensures FileHeader validators return false for invalid field values", 
     textFileHeader = new FileHeader(textStarter);
   })
 
-  test("ensures validation returns false for short immediate destination", () => {
+  test("returns false for short immediate destination", () => {
     expect(Validation.validateImmediateDestinationOrOrigin(shortFileHeader.fields.immediateDestination)).toBe(false);
   });
 
-  test("ensures validation returns false for short immediate origin", () => {
+  test("returns false for short immediate origin", () => {
     expect(Validation.validateImmediateDestinationOrOrigin(shortFileHeader.fields.immediateOrigin)).toBe(false);
   });
 
-  test("ensures validation returns false for text in immediate destination", () => {
+  test("returns false for text in immediate destination", () => {
     expect(Validation.validateImmediateDestinationOrOrigin(textFileHeader.fields.immediateDestination)).toBe(false);
   });
 
-  test("ensures validation returns false for text in immediate origin", () => {
+  test("returns false for text in immediate origin", () => {
     expect(Validation.validateImmediateDestinationOrOrigin(textFileHeader.fields.immediateOrigin)).toBe(false);
   });
 
