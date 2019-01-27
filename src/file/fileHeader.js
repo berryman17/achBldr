@@ -12,6 +12,8 @@ class FileHeader {
         this.setImmediateOrigin(config.immediateOrigin);
         this.setImmediateOriginName(config.immediateOriginName);
         this.setFileCreationDate(config.fileCreationDate);
+        this.setFileCreationTime(config.fileCreationTime);
+        this.setReferenceCode(config.referenceCode);
 
         // throw error if required fields aren't provided
         Utils.checkRequiredFields(this.fields);
@@ -66,7 +68,7 @@ class FileHeader {
         const format = "YYMMDD";
         var curField = this.fields.fileCreationDate;
         var fileCrtnDate = fileCreationDate;
-        if (fileCrtnDate === undefined || fileCrtnDate === null) {
+        if (fileCrtnDate === undefined || fileCrtnDate === null || fileCreationDate === "") {
             curField.value = moment().format(format);
         } else if (fileCrtnDate instanceof moment) {
             curField.value = fileCrtnDate.format(format);
@@ -77,20 +79,30 @@ class FileHeader {
     }
 
     setFileCreationTime(fileCreationTime) {
-        this.fields.fileCreationTime.value = fileCreationTime;
+        const format = "HHmm";
+        var curField = this.fields.fileCreationTime;
+        var fileCrtnTime = fileCreationTime;
+        if (fileCrtnTime === undefined || fileCrtnTime === null || fileCreationTime === "") {
+            curField.value = moment().format(format);
+        } else if (fileCrtnTime instanceof moment) {
+            curField.value = fileCrtnTime.format(format);
+        } else {
+            curField.value = fileCrtnTime;
+        }
+        if (!Validation.validateFieldPattern(curField)) throw new AchFieldError("FileCreationTime has invalid format");
     }
 
     setReferenceCode(referenceCode) {
         var refCode = referenceCode;
-        var curField = this.fields.immediateOriginName;
+        var curField = this.fields.referenceCode;
 
         // prep refCode
         refCode = Utils.prepInputForField(refCode, curField);
-        
+
         // set field value
         curField.value = refCode;
         // validate field value
-        Validation.validateFieldPattern(curField);
+        if (!Validation.validateFieldPattern(curField)) throw new AchFieldError("ReferenceCode has invalid format");
     }
 
     toAchString() {

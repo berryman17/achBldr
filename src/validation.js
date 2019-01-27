@@ -12,7 +12,8 @@ exports.validateFieldPattern = function(field) {
 
     // ensure that the field value length is correct
     if (field.value.length === field.length) {
-    // test the string against the field's pattern
+        
+        // test the string against the field's pattern
         if (field.value.match(field.pattern)) {
             return true;
         } 

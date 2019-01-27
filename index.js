@@ -26,7 +26,8 @@ const starter = {
     immediateOrigin: "092905249",
     immediateDestinationName: "Stockman Bank of Montana",
     immediateOriginName: "Stockman Bank of Montana",
-    fileCreationDate: moment()
+    fileCreationDate: moment(), // also accepts string "YYMMDD"
+    fileCreationTime: moment() // also accepts string "HHmm"
   };
 
 var fileHeader = new FileHeader(starter);
