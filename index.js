@@ -20,10 +20,12 @@ var e = new EntryPPD();
 var ea = new EntryAddenda();
 
 const starter = {
-    immediateDestination: "092905249"
+    immediateDestination: "092905249",
+    immediateOrigin: "0",
+    immediateDestinationName: "Stockman Bank"
   };
 var fileHeader = new FileHeader(starter);
-//Validation.validateImmediateDestinationOrOrigin(fileHeader.fields.immediateDestination)
+console.log(fileHeader.fields.immediateDestinationName);
 
 e.addAddenda(ea);
 b.addEntry(e);

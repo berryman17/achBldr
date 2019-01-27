@@ -1,14 +1,45 @@
 const Utils = require('../src/utils');
 
-describe("ensure stringFill() returns properly formatted strings", () => {
-    
+describe("test stringFill()", () => {
     // 9 chars is desired length
     var tooLongString = "toooooooLong";
     var sameLengthString = "justRight";
-    var shortString = "short"
+    var shortString = "short";
+    var expectedOutputLeft = "    short";
+    var expectedOutputRight = "short    ";
 
-    test("does not throw error when required field value provided", () => {
-        expect(()  => {Utils.stringFill(tooLongString, " ", "fromLeft", 9)}).toThrow();
+    describe("ensure errors are thrown/not thrown properly", () => {
+
+        test("throws error when inputString longer than outputLength", () => {
+            expect(()  => {Utils.stringFill(tooLongString, " ", "fromLeft", 9)}).toThrow();
+        });
+
+        test("throws error when outputLength less than 0", () => {
+            expect(()  => {Utils.stringFill(tooLongString, " ", "fromLeft", -1)}).toThrow();
+        });
+
+        test("throws error when fillChar is empty string", () => {
+            expect(()  => {Utils.stringFill(sameLengthString, "", "fromLeft", 9)}).toThrow();
+        });
+
+        test("throws error when fillChar is longer than one character", () => {
+            expect(()  => {Utils.stringFill(sameLengthString, "12", "fromLeft", 9)}).toThrow();
+        });
+    });
+
+    describe("ensure filled strings are returned properly", () => {
+        
+        test("returns inputString because inputString.length == outputLength", () => {
+            expect(Utils.stringFill(sameLengthString, " ", "fromLeft", 9)).toBe(sameLengthString);
+        });
+
+        test("returns left-filled string", () => {
+            expect(Utils.stringFill(shortString, " ", "fromLeft", 9)).toBe(expectedOutputLeft);
+        });
+
+        test("returns right-filled string", () => {
+            expect(Utils.stringFill(shortString, " ", "fromRight", 9)).toBe(expectedOutputRight);
+        });
     });
     
 });

@@ -1,9 +1,7 @@
 const Validation = require('../src/Validation');
 const FileHeader = require('../src/file/FileHeader')
 
-
-
-describe("testing FileHeader validators correctly identify allowed field values", () => {
+describe("ensures FileHeader validators return true for valid field values", () => {
 
   var goodFileHeader;
 
@@ -25,7 +23,7 @@ describe("testing FileHeader validators correctly identify allowed field values"
 
 });
 
-describe("testing FileHeader validators correctly identify disallowed field values", () => {
+describe("ensures FileHeader validators return false for invalid field values", () => {
 
   var shortFileHeader;
   var textFileHeader;

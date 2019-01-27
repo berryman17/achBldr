@@ -1,4 +1,5 @@
-const constants = require('./constants')
+const constants = require('./constants');
+const AchFieldError = require('./error/AchFieldError');
 
 var exports = module.exports = {};
 
@@ -23,13 +24,24 @@ exports.validateImmediateDestinationOrOrigin = function(immediateDestinationOrOr
         resultString = constants.SPACE + resultString;
 
         // test the string against the fields pattern
-        return regex.test(resultString);
-
-    // if resultString isn't 9 characters long
-    } else {
-        return false;
+        if (regex.test(resultString)) {
+            return;
+        }
     }
-
     
+    // throw error if regex fails
+    throw new AchFieldError(immediateDestinationOrOriginField + " didn't match field pattern");
+
+}
+
+exports.validateImmediateDestinationOrOriginName = (immediateDestinationOrOriginNameField) => {
+    var regex = new RegExp();
+    regex.pattern = immediateDestinationOrOriginNameField.pattern;
+
+    // trim string
+    resultString = immediateDestinationOrOriginNameField.value.trim();
+
+    // test the string against the fields pattern
+    return regex.test(resultString);
 }
 

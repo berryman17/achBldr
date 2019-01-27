@@ -9,6 +9,7 @@ class BatchHeader {
 
 const fields = {
     recordTypeCode: {
+        name: "RecordTypeCode",
         required: true,
         position: 1,
         length: 1,
@@ -16,6 +17,7 @@ const fields = {
         value: "5"
     },
     serviceClassCode: {
+        name: "ServiceClassCode",
         required: true,
         position: 2,
         length: 3,
@@ -23,6 +25,7 @@ const fields = {
         value: "200"
     },
     companyName: {
+        name: "CompanyName",
         required: true,
         position: 5,
         length: 16,
@@ -30,6 +33,7 @@ const fields = {
         value: "My Company"
     },
     companyDiscretionaryData: {
+        name: "CompanyDiscretionaryData",
         required: false,
         position: 21,
         length: 20,
@@ -37,6 +41,7 @@ const fields = {
         value: "Payroll 01-01-19"
     },
     companyIdentification: {
+        name: "CompanyIdentification",
         required: true,
         position: 41,
         length: 10,
@@ -44,6 +49,7 @@ const fields = {
         value: "810101012"
     },
     standardEntryClassCode: {
+        name: "StandardEntryClassCode",
         required: true,
         position: 51,
         length: 3,
@@ -51,6 +57,7 @@ const fields = {
         value: "PPD"
     },
     companyEntryDescription: {
+        name: "CompanyEntryDescription",
         required: true,
         position: 54,
         length: 10,
@@ -58,6 +65,7 @@ const fields = {
         value: "PAYROLL"
     },
     companyDescriptiveDate: {
+        name: "CompanyDescriptiveDate",
         required: false,
         position: 64,
         length: 6,
@@ -65,6 +73,7 @@ const fields = {
         value: "190101"
     },
     effectiveEntryDate: {
+        name: "EffectiveEntryDate",
         required: true,
         position: 70,
         length: 6,
@@ -72,6 +81,7 @@ const fields = {
         value: "190102"
     },
     settlementDate: {
+        name: "SettlementDate",
         required: false,
         position: 76,
         length: 3,
@@ -79,13 +89,15 @@ const fields = {
         value: "   "
     },
     originatorStatusCode: {
+        name: "OriginatorStatusCode",
         required: true,
         position: 79,
         length: 1,
         patterm: "/(1)/",
         value: "1"
     },
-    originatingDfiIdentification: {
+    originatingDfiId: {
+        name: "OriginatingDfiIdentification",
         required: true,
         position: 80,
         length: 8,
@@ -93,6 +105,7 @@ const fields = {
         value: "09290524"
     },
     batchNumber: {
+        name: "BatchNumber",
         required: true,
         position: 88,
         length: 7,

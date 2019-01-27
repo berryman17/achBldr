@@ -1,5 +1,6 @@
-const Validation = require('../Validation')
-const Utils = require('../utils')
+const Validation = require('../Validation');
+const Utils = require('../utils');
+const Constants  = require('../constants');
 
 class FileHeader {
     constructor(config) {
@@ -16,17 +17,35 @@ class FileHeader {
 
 
     setImmediateDestination(immediateDestination) {
-        //console.log(Validation.validateImmediateDestinationOrOrigin(immediateDestination));
         this.fields.immediateDestination.value = immediateDestination;
+        Validation.validateImmediateDestinationOrOrigin(this.fields.immediateDestination);
     }
 
     setImmediateDestinationName(immediateDestinationName) {
-        this.fields.immediateDestinationName.value = immediateDestinationName;
+        var name = "";
+        var curField = this.fields.immediateDestinationName;
+        // fill field value with spaces if input is undefined or null
+        if (immediateDestinationName == undefined || immediateDestinationName == null) {
+            // fill empty string with spaces
+            name = Utils.stringFill(name, Constants.SPACE, "fromRight", curField.length);
+            curField.value = name;
+            Validation.validateImmediateDestinationOrOriginName(this.fields.immediateDestinationName);
+        } else {
+            name = immediateDestinationName;
+            // shorten input if longer than field length
+            if (immediateDestinationName.length > curField.length) {
+                name = name.substr(0, curField.length-1);
+            }
+            // fill string with spaces if shorter than 
+            Utils.stringFill(name, Constants.SPACE, "fromRight", curField.length);
+            curField.value = name;
+            Validation.validateImmediateDestinationOrOriginName(curField);
+        }
     }
 
     setImmediateOrigin(immediateOrigin) {
-        //console.log(Validation.validateImmediateDestinationOrOrigin(immediateOrigin));
         this.fields.immediateOrigin.value = immediateOrigin;
+        Validation.validateImmediateDestinationOrOrigin(this.fields.immediateOrigin);
     }
 
     setImmediateOriginName(immediateOriginName) {
@@ -45,6 +64,7 @@ class FileHeader {
 
 const fields = {
     recordTypeCode: {
+        name: "RecordTypeCode",
         required: true,
         position: 1,
         length: 1,
@@ -52,6 +72,7 @@ const fields = {
         value: "1"
     },
     priorityCode: {
+        name: "PriorityCode",
         required: true,
         position: 2,
         length: 2,
@@ -59,6 +80,7 @@ const fields = {
         value: "01"
     },
     immediateDestination: {
+        name: "ImmediateDestination",
         required: true,
         position: 4,
         length: 10,
@@ -66,6 +88,7 @@ const fields = {
         value: " 123456789"
     },
     immediateOrigin: {
+        name: "ImmediateOrigin",
         required: true,
         position: 14,
         length: 10,
@@ -73,6 +96,7 @@ const fields = {
         value: " 123456789"
     },
     fileCreationDate: {
+        name: "FileCreationDate",
         required: true,
         position: 24,
         length: 6,
@@ -80,6 +104,7 @@ const fields = {
         value: ""
     },
     fileCreationTime: {
+        name: "FileCreationTime",
         required: false,
         position: 30,
         length: 4,
@@ -87,13 +112,15 @@ const fields = {
         value: ""
     },
     fileIdModifier: {
+        name: "FileIdModifier",
         required: true,
         position: 33,
         length: 1,
         patterm: "/[0-9A-Z]{1}/",
         value: "A"
     },
-    recordSi: {
+    recordSize: {
+        name: "RecordSize",
         required: true,
         position: 35,
         length: 3,
@@ -101,6 +128,7 @@ const fields = {
         value: "094"
     },
     blockingFactor: {
+        name: "BlockingFactor",
         required: true,
         position: 38,
         length: 2,
@@ -108,6 +136,7 @@ const fields = {
         value: "10"
     },
     formatCode: {
+        name: "FormatCode",
         required: true,
         position: 10,
         length: 1,
@@ -115,20 +144,23 @@ const fields = {
         value: "1"
     },
     immediateDestinationName: {
+        name: "ImmediateDestinationName",
         required: false,
         position: 41,
         length: 23,
-        patterm: "/[0-9\w\- ]{0,23}/",
+        patterm: "/[0-9\w\- ]{23}/",
         value: ""
     },
     immediateOriginName: {
+        name: "ImmediateOriginName",
         required: false,
         position: 64,
         length: 23,
-        patterm: "/[0-9\w\- ]{0,23}/",
+        patterm: "/[0-9\w\- ]{23}/",
         value: ""
     },
     referenceCode: {
+        name: "ReferenceCode",
         required: false,
         position: 87,
         length: 8,
