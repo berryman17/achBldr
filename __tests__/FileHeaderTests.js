@@ -11,6 +11,23 @@ describe("FileHeader methods should throw/not throw errors properly", () => {
         fileHeader = new FileHeader(initObj);
     });
 
+    // TODO
+    /*
+    test("throws error when constructor called with required fields missing", () => {
+        const reqMissing = {
+
+        }
+        expect(() => {new FileHeader()}).toThrow();
+    });
+
+    // TODO
+    test("does not throw error when constructor called with optional fields missing", () => {
+        const optMissing = {
+            
+        }
+        expect(() => {new FileHeader()}).not.toThrow();
+    });
+    */
     test("throws error when setImmediateDestination() parameter is undefined", () => {
         expect(() => {fileHeader.setImmediateDestination(undefined)}).toThrow();
     });

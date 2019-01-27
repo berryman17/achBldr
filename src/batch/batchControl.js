@@ -1,4 +1,4 @@
-
+const Constants = require('../constants');
 
 class BatchControl {
     constructor() {
@@ -12,7 +12,9 @@ const fields = {
         required: true,
         position: 1,
         length: 1,
-        pattern: "(8)",
+        pattern: /(8)/g,
+        fillDirection: Constants.FROM_RIGHT,
+        fillChar: Constants.SPACE,
         value: "8"
     },
     serviceClassCode: {
@@ -20,15 +22,19 @@ const fields = {
         required: true,
         position: 2,
         length: 3,
-        pattern: "[2][028][05]",
-        value: "200"
+        pattern: /[2][028][05]/g,
+        fillDirection: Constants.FROM_RIGHT,
+        fillChar: Constants.SPACE,
+        value: ""
     },
     entryCount: {
         name: "EntryCount",
         required: true,
         position: 5,
         length: 6,
-        pattern: "[0-9]{6}",
+        pattern: /[0-9]{6}/g,
+        fillDirection: Constants.FROM_LEFT,
+        fillChar: "0",
         value: 0
     },
     entryHash: {
@@ -36,7 +42,9 @@ const fields = {
         required: true,
         position: 11,
         length: 10,
-        pattern: "[0-9]{10}",
+        pattern: /[0-9]{10}/g,
+        fillDirection: Constants.FROM_LEFT,
+        fillChar: Constants.SPACE,
         value: 0
     },
     totalDebitAmount: {
@@ -44,7 +52,9 @@ const fields = {
         required: true,
         position: 21,
         length: 12,
-        pattern: "[0-9]{12}",
+        pattern: /[0-9]{12}/g,
+        fillDirection: Constants.FROM_LEFT,
+        fillChar: "0",
         value: 0
     },
     totalCreditAmount: {
@@ -52,7 +62,9 @@ const fields = {
         required: true,
         position: 33,
         length: 12,
-        pattern: "[0-9]{6}",
+        pattern: /[0-9]{6}/g,
+        fillDirection: Constants.FROM_LEFT,
+        fillChar: "0",
         value: 0
     },
     companyIdentification: {
@@ -60,15 +72,19 @@ const fields = {
         required: true,
         position: 45,
         length: 10,
-        pattern: "[0-9 ]{10}",
-        value: " 810101012"
+        pattern: /[0-9 ]{10}/g,
+        fillDirection: Constants.FROM_LEFT,
+        fillChar: Constants.SPACE,
+        value: ""
     },
     messageAuthCode: {
         name: "MessageAuthenticationCode",
         required: false,
         position: 55,
         length: 19,
-        pattern: "[ ]{19}",
+        pattern: /[ ]{19}/g,
+        fillDirection: Constants.FROM_RIGHT,
+        fillChar: Constants.SPACE,
         value: ""
     },
     reserved: {
@@ -76,7 +92,9 @@ const fields = {
         required: false,
         position: 74,
         length: 6,
-        pattern: "[ ]{6}",
+        pattern: /[ ]{6}/g,
+        fillDirection: Constants.FROM_RIGHT,
+        fillChar: Constants.SPACE,
         value: ""
     },
     originatingDfiId: {
@@ -84,16 +102,20 @@ const fields = {
         required: true,
         position: 80,
         length: 8,
-        pattern: "[0-9]{8}",
-        value: "09290524"
+        pattern: /[0-9]{8}/g,
+        fillDirection: Constants.FROM_RIGHT,
+        fillChar: Constants.SPACE,
+        value: ""
     },
     batchNumber: {
         name: "BatchNumber",
         required: true,
         position: 88,
         length: 7,
-        pattern: "[0-9]{7}",
-        value: 1
+        pattern: /[0-9]{7}/g,
+        fillDirection: Constants.FROM_LEFT,
+        fillChar: "0",
+        value: 0
     }
 }
 

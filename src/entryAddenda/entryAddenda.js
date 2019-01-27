@@ -1,4 +1,4 @@
-
+const Constants = require('../constants');
 
 class EntryAddenda {
     constructor() {
@@ -13,7 +13,9 @@ const fields = {
         required: true,
         position: 1,
         length: 1,
-        pattern: "(7)",
+        pattern: /(7)/g,
+        fillDirection: Constants.FROM_RIGHT,
+        fillChar: Constants.SPACE,
         value: "7"
     },
     addendaTypeCode: {
@@ -21,7 +23,9 @@ const fields = {
         required: true,
         position: 2,
         length: 2,
-        pattern: "[0-9]{2}",
+        pattern: /[0-9]{2}/g,
+        fillDirection: Constants.FROM_RIGHT,
+        fillChar: Constants.SPACE,
         value: "05"
     },
     paymentRelatedInfo: {
@@ -29,7 +33,9 @@ const fields = {
         required: false,
         position: 4,
         length: 80,
-        pattern: "[0-9\w\-\*\\ ]{80}",
+        pattern: /[\w\-\*\\\/]{80}/g,
+        fillDirection: Constants.FROM_RIGHT,
+        fillChar: Constants.SPACE,
         value: ""
     },
     addendaSequenceNumber: {
@@ -37,17 +43,21 @@ const fields = {
         required: true,
         position: 84,
         length: 4,
-        pattern: "[0-9]{4}",
-        value: "0001"
+        pattern: /[0-9]{4}/g,
+        fillDirection: Constants.FROM_RIGHT,
+        fillChar: Constants.SPACE,
+        value: 0
     },
     entryDetailSequenceNumber: {
         name: "EntryDetailSequenceNumber",
         required: true,
         position: 88,
         length: 7,
-        pattern: "[0-9]{7}",
+        pattern: /[0-9]{7}/g,
+        fillDirection: Constants.FROM_RIGHT,
+        fillChar: Constants.SPACE,
         value: ""
-    },
+    }
 }
 
 module.exports = EntryAddenda;
