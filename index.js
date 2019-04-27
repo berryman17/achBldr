@@ -31,7 +31,7 @@ const starter = {
   };
 
 var fileHeader = new FileHeader(starter);
-console.log(fileHeader.toAchString() + " " + fileHeader.toAchString().length);
+console.log(fileHeader.toAchString());//  + " " + fileHeader.toAchString().length
 
 /*
 e.addAddenda(ea);
